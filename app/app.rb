@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rack'
 require 'rack/contrib'
 require 'sinatra'
@@ -7,9 +9,9 @@ require './app/move'
 use Rack::PostBodyContentTypeParser
 
 appearance = {
-  color: "#00FF00",
-  head_type: "regular",
-  tail_type: "regular",
+  color: '#00FF00',
+  head_type: 'regular',
+  tail_type: 'regular'
 }
 
 get '/' do
