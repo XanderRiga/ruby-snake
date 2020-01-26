@@ -3,7 +3,10 @@
 source 'https://rubygems.org'
 
 gem 'activesupport'
+gem 'dry-struct'
+gem 'dry-types'
 gem 'json'
+gem 'pry'
 gem 'rack-contrib'
 gem 'rubocop'
 gem 'sinatra'
