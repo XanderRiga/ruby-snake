@@ -3,7 +3,7 @@
 require_relative 'base'
 
 module Entities
-  class Coords < Base
+  class Coord < Base
     attribute :x, Types::Strict::Integer
     attribute :y, Types::Strict::Integer
   end
