@@ -9,5 +9,9 @@ module Entities
     attribute :name, Types::Strict::String
     attribute :health, Types::Strict::Integer
     attribute :body, Entities::SnakeBody
+
+    def head
+      body.coords.first
+    end
   end
 end
