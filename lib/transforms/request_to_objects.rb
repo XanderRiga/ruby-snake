@@ -4,8 +4,6 @@ require_relative '../../lib/entities/request'
 require_relative '../../lib/entities/game'
 require_relative '../../lib/entities/board'
 require_relative '../../lib/entities/snake'
-require_relative '../../lib/entities/snake_body'
-require_relative '../../lib/entities/food'
 require_relative '../../lib/entities/coord'
 
 module Transforms
@@ -31,9 +29,7 @@ module Transforms
     end
 
     def build_food(food)
-      Entities::Food.new(
-        coords: food.map { |coord| Entities::Coord.new(x: coord[:x], y: coord[:y]) }
-      )
+      food.map { |coord| Entities::Coord.new(x: coord[:x], y: coord[:y]) }
     end
 
     def build_snakes(snakes)
@@ -52,9 +48,7 @@ module Transforms
     end
 
     def build_body(body)
-      Entities::SnakeBody.new(
-        coords: body.map { |coord| Entities::Coord.new(x: coord[:x], y: coord[:y]) }
-      )
+      body.map { |coord| Entities::Coord.new(x: coord[:x], y: coord[:y]) }
     end
   end
 end
