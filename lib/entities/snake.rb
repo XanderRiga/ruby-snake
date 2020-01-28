@@ -13,5 +13,9 @@ module Entities
     def head
       body.first
     end
+
+    def tail
+      body.last
+    end
   end
 end
