@@ -3,7 +3,6 @@
 source 'https://rubygems.org'
 
 gem 'activesupport'
-gem 'awesome_print'
 gem 'dry-struct'
 gem 'dry-types'
 gem 'json'
