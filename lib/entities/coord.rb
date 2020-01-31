@@ -2,6 +2,9 @@
 
 require_relative 'base'
 
+# It is worth noting here that in Battlesnake, the TOP LEFT of the board is [0,0]
+# Therefore, when we talk about rows and columns, row corresponds to y
+# and column corresponds to x
 module Entities
   class Coord < Base
     attribute :x, Types::Strict::Integer

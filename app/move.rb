@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative '../lib/transforms/request_to_objects'
+require_relative '../lib/interactors/flood_fill'
+require_relative '../lib/entities/coord'
 
 def move(board)
   puts JSON.pretty_generate(board)
