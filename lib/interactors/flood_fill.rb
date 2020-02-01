@@ -20,11 +20,8 @@ module Interactors
         @curr_matrix = mark_space_visited(curr_coord)
 
         queue << curr_coord.up if valid_space?(curr_coord.up)
-
         queue << curr_coord.down if valid_space?(curr_coord.down)
-
         queue << curr_coord.left if valid_space?(curr_coord.left)
-
         queue << curr_coord.right if valid_space?(curr_coord.right)
       end
 
