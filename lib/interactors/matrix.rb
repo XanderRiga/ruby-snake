@@ -16,21 +16,21 @@ module Interactors
     # 1: snake head
     # 2: snake body
     # 3: snake tail
-    # 4: food
-    # 5: our head
-    # 6: our body
-    # 7: our tail
+    # 4: our head
+    # 5: our body
+    # 6: our tail
+    # 7: food
     def board_values(request, row, col)
       coord = Entities::Coord.new(x: col, y: row)
       if request.board.food.include?(coord)
-        4
+        7
       elsif request.you.body.include?(coord)
         if request.you.head == coord
-          5
+          4
         elsif request.you.tail == coord
-          7
-        else
           6
+        else
+          5
         end
       elsif request.board.snake_bodies.include?(coord)
         if request.board.snake_heads.include?(coord)

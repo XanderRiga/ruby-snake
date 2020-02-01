@@ -15,26 +15,32 @@ module Interactors
       until queue.empty?
         curr_coord = queue.pop
 
-        next if !on_board?(curr_coord) || @curr_matrix[curr_coord.y, curr_coord.x] != 0
+        next if !on_board?(curr_coord) || snake_value?(@curr_matrix[curr_coord.y, curr_coord.x])
 
         @curr_matrix = mark_space_visited(curr_coord)
 
-        queue << curr_coord.up if on_board?(curr_coord.up) && @curr_matrix[curr_coord.up.y, curr_coord.up.x] == 0
-        if on_board?(curr_coord.down) && @curr_matrix[curr_coord.down.y, curr_coord.down.x] == 0
-          queue << curr_coord.down
-        end
-        if on_board?(curr_coord.left) && @curr_matrix[curr_coord.left.y, curr_coord.left.x] == 0
-          queue << curr_coord.left
-        end
-        if on_board?(curr_coord.right) && @curr_matrix[curr_coord.right.y, curr_coord.right.x] == 0
-          queue << curr_coord.right
-        end
+        queue << curr_coord.up if valid_space?(curr_coord.up)
+
+        queue << curr_coord.down if valid_space?(curr_coord.down)
+
+        queue << curr_coord.left if valid_space?(curr_coord.left)
+
+        queue << curr_coord.right if valid_space?(curr_coord.right)
       end
 
       @curr_matrix
     end
 
     private
+
+    # These are the values of snakes in the matrix as defined in interactors/matrix.rb
+    def snake_value?(value)
+      [1, 2, 3, 4, 5, 6].include?(value)
+    end
+
+    def valid_space?(coord)
+      on_board?(coord) && (@curr_matrix[coord.y, coord.x] == 0 || @curr_matrix[coord.y, coord.x] == 7)
+    end
 
     # Returns a new matrix with the space marked with an x
     def mark_space_visited(coord)
