@@ -27,10 +27,8 @@ module Entities
     end
 
     def print_matrix
-      puts "\n"
-      puts "Current board matrix\n"
-      (0...board.height).each do |i|
-        puts matrix.row(i)
+      matrix.each do |x|
+        puts x.join(' ')
       end
     end
 
