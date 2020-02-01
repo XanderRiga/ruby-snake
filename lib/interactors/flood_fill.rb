@@ -15,9 +15,9 @@ module Interactors
       until queue.empty?
         curr_coord = queue.pop
 
-        next if !on_board?(curr_coord) || snake_value?(@curr_matrix[curr_coord.y, curr_coord.x])
+        next if !on_board?(curr_coord) || snake_value?(@curr_matrix[curr_coord.y][curr_coord.x])
 
-        @curr_matrix[curr_coord.y, curr_coord.x] = 'x'
+        @curr_matrix[curr_coord.y][curr_coord.x] = 'x'
 
         queue << curr_coord.up if valid_space?(curr_coord.up)
         queue << curr_coord.down if valid_space?(curr_coord.down)
@@ -36,13 +36,13 @@ module Interactors
     end
 
     def valid_space?(coord)
-      on_board?(coord) && (@curr_matrix[coord.y, coord.x] == 0 || @curr_matrix[coord.y, coord.x] == 7)
+      on_board?(coord) && (@curr_matrix[coord.y][coord.x] == 0 || @curr_matrix[coord.y][coord.x] == 7)
     end
 
     def on_board?(coord)
-      coord.x < @curr_matrix.column_count &&
+      coord.x < @curr_matrix[0].length &&
         coord.x >= 0 &&
-        coord.y < @curr_matrix.row_count &&
+        coord.y < @curr_matrix.length &&
         coord.y >= 0
     end
   end

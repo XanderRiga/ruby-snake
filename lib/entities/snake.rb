@@ -17,5 +17,9 @@ module Entities
     def tail
       body.last
     end
+
+    def body_without_ends
+      body[1, body.length - 2]
+    end
   end
 end

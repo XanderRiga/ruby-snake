@@ -7,7 +7,6 @@ gem 'dry-struct'
 gem 'dry-types'
 gem 'irb', require: false
 gem 'json'
-gem 'matrix'
 gem 'pry'
 gem 'rack-contrib'
 gem 'rubocop'

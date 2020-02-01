@@ -5,9 +5,9 @@ require_relative '../../lib/entities/coord'
 module Interactors
   class Matrix
     def build(request)
-      ::Matrix.build(request.board.height, request.board.width) do |row, col|
-        board_values(request, row, col)
-      end
+      matrix = Array.new(request.board.height) { Array.new(request.board.width, 0) }
+
+      build_board(request, matrix)
     end
 
     private
@@ -20,29 +20,31 @@ module Interactors
     # 5: our body
     # 6: our tail
     # 7: food
-    def board_values(request, row, col)
-      coord = Entities::Coord.new(x: col, y: row)
-      if request.board.food.include?(coord)
-        7
-      elsif request.you.body.include?(coord)
-        if request.you.head == coord
-          4
-        elsif request.you.tail == coord
-          6
-        else
-          5
-        end
-      elsif request.board.snake_bodies.include?(coord)
-        if request.board.snake_heads.include?(coord)
-          1
-        elsif request.board.snake_tails.include?(coord)
-          3
-        else
-          2
-        end
-      else
-        0
+    def build_board(request, matrix)
+      request.board.food.each do |food|
+        matrix[food.y][food.x] = 7
       end
+
+      matrix[request.you.head.y][request.you.head.x] = 4
+      matrix[request.you.tail.y][request.you.tail.x] = 6
+
+      request.you.body.each do |body|
+        matrix[body.y][body.x] = 5 if matrix[body.y][body.x] == 0
+      end
+
+      request.board.snake_heads.each do |head|
+        matrix[head.y][head.x] = 1 if matrix[head.y][head.x] == 0
+      end
+
+      request.board.snake_tails.each do |tail|
+        matrix[tail.y][tail.x] = 3 if matrix[tail.y][tail.x] == 0
+      end
+
+      request.board.snake_bodies.each do |body|
+        matrix[body.y][body.x] = 2 if matrix[body.y][body.x] == 0
+      end
+
+      matrix
     end
   end
 end
