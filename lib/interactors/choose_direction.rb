@@ -10,10 +10,8 @@ module Interactors
         down: num_safe_spaces(request.you.head.down, request.matrix),
         left: num_safe_spaces(request.you.head.left, request.matrix),
         right: num_safe_spaces(request.you.head.right, request.matrix)
-      }.max_by { |k, v| v }[0]
+      }.max_by { |_k, v| v }[0]
     end
-
-    private
 
     def num_safe_spaces(coord, matrix)
       new_matrix = Interactors::FloodFill.new.call(coord, matrix)
