@@ -5,14 +5,12 @@ require_relative 'flood_fill'
 module Interactors
   class ChooseDirection
     def call(request)
-      matrix = {
+      {
         up: num_safe_spaces(request.you.head.up, request.matrix),
         down: num_safe_spaces(request.you.head.down, request.matrix),
         left: num_safe_spaces(request.you.head.left, request.matrix),
         right: num_safe_spaces(request.you.head.right, request.matrix)
-      }
-
-      matrix.max_by { |_k, v| v }[0]
+      }.max_by { |_k, v| v }[0]
     end
 
     def num_safe_spaces(coord, matrix)
