@@ -9,6 +9,9 @@ def move(board)
   request = Transforms::RequestToObjects.new.call(board)
   # request.print_matrix
 
+  require 'pry'
+  binding.pry
+
   direction = Interactors::ChooseDirection.new.call(request)
 
   { move: direction }
